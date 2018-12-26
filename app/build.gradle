@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.sample.daggerworkmanagersample"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.1.0-alpha03'
+
+    // Dagger
+    implementation "com.google.dagger:dagger-android:2.20"
+    kapt "com.google.dagger:dagger-compiler:2.20"
+    // Work Manager
+    implementation "android.arch.work:work-runtime-ktx:1.0.0-beta01"
+    // Assisted Inject
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:0.3.2"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:0.3.2"
+}
