@@ -219,8 +219,8 @@ public abstract class AssistedInject_SampleAssistedInjectModule {
 ```
 First off, the generated implementation of HelloWorldWorker.Factory, look almost the same as our original code. Next, generated module (a.k.a AssistedInject_SampleAssistedInjectModule) AssistedInject simply binds the HelloWorldWorker_AssistedFactory to HelloWorldWorker.Factory, that is how Dagger know about HelloWorldWorker.Factory.
 
-Conclusion
-I have consulted many ways to solve this problem, including subcomponent, member injects inside worker class e.g. This is by far IMHO the most efficient way. The source code is available. If you run into trouble, feel free to open an issue, I will try my best I answer it all. Thanks for reading and happy coding!
+### Conclusion
+I have consulted many ways to solve this problem, including subcomponent, member injects inside worker class. This is by far IMHO the most efficient way. The source code is available. If you run into trouble, feel free to open an issue, I will try my best I answer it all. Thanks for reading and happy coding!
 
 ### Further reading
 * [AssistedInject — Guice Wiki](https://github.com/google/guice/wiki/AssistedInject)
