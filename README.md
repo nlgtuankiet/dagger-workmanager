@@ -1,4 +1,4 @@
-# Dagger 2 setup with WorkManager, a complete step by step guild
+# Dagger 2 setup with WorkManager, a complete step by step guide
 
 > **Tl; DR:** Use [WorkerFactory](https://developer.android.com/reference/androidx/work/WorkerFactory), [AssistedInject](https://github.com/square/AssistedInject), and [Dagger’s Multibindings](https://google.github.io/dagger/multibindings) we can inject dependencies into Worker class, this is similar with the way we did with ViewModel.
 
