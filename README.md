@@ -6,6 +6,7 @@
 WorkManager just hit beta a few days ago, in the release note, the team has mentioned:
 
 > This release contains no API changes; moving forward, WorkManager is expected to stay API stable until the next version
+
 I guess this is a good time to write about it, more specifically, how to inject dependence into Worker class?
 
 In this tutorial, we‘re not discussing the basic of WorkManager ratter than a proper Dagger 2 setup. So if you are new to WorkManager, I recommend checking out the [official document](https://developer.android.com/topic/libraries/architecture/workmanager/)
