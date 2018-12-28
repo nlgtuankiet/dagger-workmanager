@@ -183,7 +183,7 @@ interface SampleComponent {
 }
 ```
 
-We hit the fun button again and all is working as expected expect
+We hit the fun button again and all is working as expected
 
 ### Understand the generated code
 It’s important to understand what is going under the hood, so let dive into the generated source code
