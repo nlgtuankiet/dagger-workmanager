@@ -7,7 +7,7 @@ import androidx.work.WorkManager
 class SampleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        val factory = DaggerSampleComponent.builder().appContext(this).create().factory()
+        val factory: SampleWorkerFactory = DaggerSampleComponent.create().factory()
         WorkManager.initialize(this, Configuration.Builder().setWorkerFactory(factory).build())
     }
 }

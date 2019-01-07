@@ -19,14 +19,6 @@ import kotlin.reflect.KClass
 )
 interface SampleComponent {
     fun factory(): SampleWorkerFactory
-
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun appContext(app: SampleApplication): Builder
-
-        fun create(): SampleComponent
-    }
 }
 
 @Module(includes = [AssistedInject_SampleAssistedInjectModule::class])
@@ -43,10 +35,7 @@ interface WorkerBindingModule {
     @Binds
     @IntoMap
     @WorkerKey(HelloWorldWorker::class)
-    fun bindHelloWorldWorker(factory: HelloWorldWorker.Factory): ChildWorkerFactory<out ListenableWorker>
-
-    @Binds
-    fun bindContext(app: SampleApplication): Context
+    fun bindHelloWorldWorker(factory: HelloWorldWorker.Factory): ChildWorkerFactory
 }
 
 

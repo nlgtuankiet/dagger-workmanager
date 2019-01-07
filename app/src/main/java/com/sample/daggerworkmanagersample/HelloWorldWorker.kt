@@ -14,8 +14,8 @@ import javax.inject.Provider
 class Foo @Inject constructor()
 
 class HelloWorldWorker @AssistedInject constructor(
+    @Assisted private val appContext: Context,
     @Assisted private val params: WorkerParameters,
-    private val appContext: Context,
     private val foo: Foo
 ) : Worker(appContext, params) {
     private val TAG = "HelloWorldWorker"
@@ -26,15 +26,15 @@ class HelloWorldWorker @AssistedInject constructor(
     }
 
     @AssistedInject.Factory
-    interface Factory  : ChildWorkerFactory<HelloWorldWorker>
+    interface Factory : ChildWorkerFactory
 }
 
-interface ChildWorkerFactory<T : ListenableWorker> {
-    fun create(params: WorkerParameters): T
+interface ChildWorkerFactory {
+    fun create(appContext: Context, params: WorkerParameters): ListenableWorker
 }
 
 class SampleWorkerFactory @Inject constructor(
-    private val workerFactories: Map<Class<out ListenableWorker>, @JvmSuppressWildcards Provider<ChildWorkerFactory<out ListenableWorker>>>
+    private val workerFactories: Map<Class<out ListenableWorker>, @JvmSuppressWildcards Provider<ChildWorkerFactory>>
 ) : WorkerFactory() {
     override fun createWorker(
         appContext: Context,
@@ -43,9 +43,9 @@ class SampleWorkerFactory @Inject constructor(
     ): ListenableWorker? {
         val foundEntry =
             workerFactories.entries.find { Class.forName(workerClassName).isAssignableFrom(it.key) }
-        val factory = foundEntry?.value
+        val factoryProvider = foundEntry?.value
             ?: throw IllegalArgumentException("unknown worker class name: $workerClassName")
-        return factory.get().create(workerParameters)
+        return factoryProvider.get().create(appContext, workerParameters)
     }
 }
 
