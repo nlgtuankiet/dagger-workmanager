@@ -1,6 +1,6 @@
 # Dagger 2 setup with WorkManager, a complete step by step guide
 
-### If you prefer to read this guide on Medium:
+### NOTE: This guide (this README.md) is outdated, but the source code is still up to date. Check out the Medium post below for the latest guide. 
 
 https://medium.com/@nlg.tuan.kiet/dagger-2-setup-with-workmanager-a-complete-step-by-step-guild-bb9f474bde37
 
