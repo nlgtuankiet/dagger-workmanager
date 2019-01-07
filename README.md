@@ -1,11 +1,18 @@
 # Dagger 2 setup with WorkManager, a complete step by step guide
 
+### If you prefer to read this guide on Medium:
+
+https://medium.com/@nlg.tuan.kiet/dagger-2-setup-with-workmanager-a-complete-step-by-step-guild-bb9f474bde37
+
+
+
 > **Tl; DR:** Use [WorkerFactory](https://developer.android.com/reference/androidx/work/WorkerFactory), [AssistedInject](https://github.com/square/AssistedInject), and [Dagger’s Multibindings](https://google.github.io/dagger/multibindings) we can inject dependencies into Worker class, this is similar with the way we did with ViewModel.
 
 
 WorkManager just hit beta a few days ago, in the release note, the team has mentioned:
 
 > This release contains no API changes; moving forward, WorkManager is expected to stay API stable until the next version
+
 I guess this is a good time to write about it, more specifically, how to inject dependence into Worker class?
 
 In this tutorial, we‘re not discussing the basic of WorkManager ratter than a proper Dagger 2 setup. So if you are new to WorkManager, I recommend checking out the [official document](https://developer.android.com/topic/libraries/architecture/workmanager/)
@@ -182,7 +189,7 @@ interface SampleComponent {
 }
 ```
 
-We hit the fun button again and all is working as expected expect
+We hit the fun button again and all is working as expected
 
 ### Understand the generated code
 It’s important to understand what is going under the hood, so let dive into the generated source code
