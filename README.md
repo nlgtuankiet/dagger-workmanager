@@ -172,6 +172,8 @@ class HelloWorldWorker @AssistedInject constructor(
     interface Factory  : ChildWorkerFactory<HelloWorldWorker>
 }
 ```
+**One imporant thing to remember** is that parameter names in AssistedInject constructor must exactly match the parameter names in AssistedInject.Factory interface. If you have `appContext: Context` in interface method, you cannot have `@Assisted context: Context` in Worker constructor. It also must be `@Assisted appContext: Context`.
+
 Since AssistedInject generates and binds those factories. Declare a module that includes the generated module, annotate it with AssistedModule, add it to our Component. Our DI setup now looks like this
 ```kotlin
 @Module(includes = [AssistedInject_SampleAssistedInjectModule::class])
