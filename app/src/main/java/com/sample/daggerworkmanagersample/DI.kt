@@ -8,6 +8,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.MapKey
 import dagger.Module
+import dagger.android.AndroidInjector
 import dagger.multibindings.IntoMap
 import kotlin.reflect.KClass
 
@@ -17,7 +18,8 @@ import kotlin.reflect.KClass
         WorkerBindingModule::class
     ]
 )
-interface SampleComponent {
+interface SampleComponent: AndroidInjector<SampleApplication> {
+
     fun factory(): SampleWorkerFactory
 }
 

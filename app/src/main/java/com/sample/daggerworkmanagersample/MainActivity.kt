@@ -12,7 +12,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.hello_button).setOnClickListener {
-            WorkManager.getInstance().enqueue(
+            WorkManager.getInstance(this).enqueue(
                 OneTimeWorkRequestBuilder<HelloWorldWorker>().build()
             )
         }
