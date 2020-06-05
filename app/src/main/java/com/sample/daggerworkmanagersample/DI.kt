@@ -6,12 +6,14 @@ import dagger.Binds
 import dagger.Component
 import dagger.MapKey
 import dagger.Module
+import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dagger.multibindings.IntoMap
 import kotlin.reflect.KClass
 
 @Component(
     modules = [
+        AndroidInjectionModule::class,
         SampleAssistedInjectModule::class,
         WorkerBindingModule::class
     ]
