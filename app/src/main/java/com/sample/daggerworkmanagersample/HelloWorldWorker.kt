@@ -2,10 +2,7 @@ package com.sample.daggerworkmanagersample
 
 import android.content.Context
 import android.util.Log
-import androidx.work.ListenableWorker
-import androidx.work.Worker
-import androidx.work.WorkerFactory
-import androidx.work.WorkerParameters
+import androidx.work.*
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import javax.inject.Inject
@@ -33,19 +30,25 @@ interface ChildWorkerFactory {
     fun create(appContext: Context, params: WorkerParameters): ListenableWorker
 }
 
+/**
+ * If there is no worker found, return null to use the default behaviour of [WorkManager]
+ * (create worker using refection)
+ *
+ * @see WorkerFactory.createWorkerWithDefaultFallback
+ */
 class SampleWorkerFactory @Inject constructor(
     private val workerFactories: Map<Class<out ListenableWorker>, @JvmSuppressWildcards Provider<ChildWorkerFactory>>
 ) : WorkerFactory() {
+
     override fun createWorker(
         appContext: Context,
         workerClassName: String,
         workerParameters: WorkerParameters
     ): ListenableWorker? {
-        val foundEntry =
-            workerFactories.entries.find { Class.forName(workerClassName).isAssignableFrom(it.key) }
-        val factoryProvider = foundEntry?.value
-            ?: throw IllegalArgumentException("unknown worker class name: $workerClassName")
-        return factoryProvider.get().create(appContext, workerParameters)
+        val foundEntry = workerFactories.entries
+            .find { Class.forName(workerClassName).isAssignableFrom(it.key) }
+            ?: return null
+        return foundEntry.value.get().create(appContext, workerParameters)
     }
 }
 
