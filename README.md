@@ -4,11 +4,14 @@ https://medium.com/@nlg.tuan.kiet/dagger-2-setup-with-workmanager-a-complete-ste
 
 
 ### Setup guide:
-See some red objects in the IDE along with the warning message
-"Unresolved reference: ..."  
--> You might want to run `./gradlew :app:kaptDebugKotlin`, this will
+:computer: Run `./gradlew :app:installDebug` to install debug
+application to connected device
+
+:crystal_ball: See some red objects in the IDE along with the warning
+message "Unresolved reference: ..."  
+:bulb: You might want to run `./gradlew :app:kaptDebugKotlin`, this will
 make all generated code got generated
 
-Got "permission denied: ./gradlew"?  
--> If you are on linux or macos, run `chmod +x ./gradlew` to add execute
+:crystal_ball: Got "permission denied: ./gradlew"?  
+:bulb: If you are on linux or macos, run `chmod +x ./gradlew` to add execute
 permission to the `gradlew` file
