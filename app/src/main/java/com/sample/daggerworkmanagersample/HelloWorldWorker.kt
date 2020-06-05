@@ -10,6 +10,13 @@ import javax.inject.Provider
 
 class Foo @Inject constructor()
 
+/**
+ * IMPORTANT NOTE!
+ *
+ * The [Context] need to be named with [appContext] and [WorkerParameters] with [params]
+ * as long as these name are identical with [ChildWorkerFactory.create]'s method parameters
+ *
+ */
 class HelloWorldWorker @AssistedInject constructor(
     @Assisted private val appContext: Context,
     @Assisted private val params: WorkerParameters,
