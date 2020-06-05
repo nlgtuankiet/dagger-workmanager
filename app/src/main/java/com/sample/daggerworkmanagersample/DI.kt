@@ -14,6 +14,7 @@ import kotlin.reflect.KClass
 @Component(
     modules = [
         AndroidInjectionModule::class,
+        DaggerAndroidWorker.Module::class,
         SampleAssistedInjectModule::class,
         WorkerBindingModule::class
     ]
