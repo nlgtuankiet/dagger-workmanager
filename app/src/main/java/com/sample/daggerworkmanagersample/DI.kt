@@ -1,10 +1,8 @@
 package com.sample.daggerworkmanagersample
 
-import android.content.Context
 import androidx.work.ListenableWorker
 import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Binds
-import dagger.BindsInstance
 import dagger.Component
 import dagger.MapKey
 import dagger.Module
@@ -18,7 +16,7 @@ import kotlin.reflect.KClass
         WorkerBindingModule::class
     ]
 )
-interface SampleComponent: AndroidInjector<SampleApplication> {
+interface SampleComponent : AndroidInjector<SampleApplication> {
 
     fun factory(): SampleWorkerFactory
 }
