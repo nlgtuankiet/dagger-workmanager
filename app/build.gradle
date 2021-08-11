@@ -35,5 +35,5 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Work Manager
-    implementation "androidx.work:work-runtime-ktx:2.3.4"
+    implementation "androidx.work:work-runtime-ktx:2.6.0-rc01"
 }
