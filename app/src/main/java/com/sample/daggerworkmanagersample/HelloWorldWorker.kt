@@ -3,25 +3,24 @@ package com.sample.daggerworkmanagersample
 import android.content.Context
 import android.util.Log
 import androidx.work.*
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import com.sample.daggerworkmanagersample.HelloWorldWorker.Factory
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import javax.inject.Inject
 import javax.inject.Provider
 
 class Foo @Inject constructor()
 
 /**
- * IMPORTANT NOTE!
- *
- * The [Context] need to be named with [appContext] and [WorkerParameters] with [params]
- * as long as these name are identical with [ChildWorkerFactory.create]'s method parameters
- *
+ * @param fooContext assisted parameter can has any name, it better to has same name with parent
+ * class parameter and [Factory.create] parameter, this is just for demonstration purpose
  */
 class HelloWorldWorker @AssistedInject constructor(
-    @Assisted private val appContext: Context,
+    @Assisted private val fooContext: Context,
     @Assisted private val params: WorkerParameters,
     private val foo: Foo
-) : Worker(appContext, params) {
+) : Worker(fooContext, params) {
     private val TAG = "HelloWorldWorker"
     override fun doWork(): Result {
         Log.d(TAG, "Hello world!")
@@ -29,8 +28,16 @@ class HelloWorldWorker @AssistedInject constructor(
         return Result.success()
     }
 
-    @AssistedInject.Factory
-    interface Factory : ChildWorkerFactory
+    /**
+     * class annotate with @AssistedFactory will available in the dependency graph, you don't need
+     * additional binding from [HelloWorldWorker_Factory_Impl] to [Factory].
+     *
+     * @see: [WorkerBindingModule.bindHelloWorldWorker]
+     */
+    @AssistedFactory
+    interface Factory : ChildWorkerFactory {
+        override fun create(appContext: Context, params: WorkerParameters): HelloWorldWorker
+    }
 }
 
 interface ChildWorkerFactory {
@@ -40,6 +47,8 @@ interface ChildWorkerFactory {
 /**
  * If there is no worker found, return null to use the default behaviour of [WorkManager]
  * (create worker using refection)
+ *
+ * Multibinding setup: [WorkerBindingModule]
  *
  * @see WorkerFactory.createWorkerWithDefaultFallback
  */
