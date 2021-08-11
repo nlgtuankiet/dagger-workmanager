@@ -10,11 +10,11 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.sample.daggerworkmanagersample"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -35,9 +35,5 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Work Manager
-    implementation "androidx.work:work-runtime-ktx:2.3.4"
-
-    // Assisted Inject
-    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$assisted_inject_version"
-    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assisted_inject_version"
+    implementation "androidx.work:work-runtime-ktx:2.6.0-rc01"
 }
