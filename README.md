@@ -3,6 +3,9 @@
 https://medium.com/@nlg.tuan.kiet/dagger-2-setup-with-workmanager-a-complete-step-by-step-guild-bb9f474bde37
 
 ### Changelog:
+## 2021-12-16
+- Remove dagger-android solution, simplify the solution, now it is easier to understand!
+
 ## 2021-08-11
 - Upgrade outdated dependencies (WorkManager 2.6.0-rc, Dagger 2.38.1)
 - Use Dagger native Assisted Inject instead of Square Assisted Inject
