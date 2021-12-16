@@ -16,10 +16,5 @@ class MainActivity : Activity() {
                 OneTimeWorkRequestBuilder<HelloWorldWorker>().build()
             )
         }
-        findViewById<Button>(R.id.hello_button2).setOnClickListener {
-            WorkManager.getInstance(this).enqueue(
-                OneTimeWorkRequestBuilder<DaggerAndroidWorker>().build()
-            )
-        }
     }
 }
