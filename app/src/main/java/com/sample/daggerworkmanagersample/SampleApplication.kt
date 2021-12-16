@@ -2,30 +2,24 @@ package com.sample.daggerworkmanagersample
 
 import android.app.Application
 import androidx.work.Configuration
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
+import androidx.work.WorkManager
 import javax.inject.Inject
 
-class SampleApplication : Application(), Configuration.Provider, HasAndroidInjector {
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+class SampleApplication : Application() {
 
     private lateinit var sampleComponent: SampleComponent
 
+    @Inject
+    lateinit var sampleWorkerFactory: SampleWorkerFactory
+
     override fun onCreate() {
         sampleComponent = DaggerSampleComponent.create()
-        sampleComponent.inject(this)
+        sampleComponent.injectTo(this)
         super.onCreate()
-    }
-
-    override fun getWorkManagerConfiguration(): Configuration {
-        val factory: SampleWorkerFactory = sampleComponent.factory()
-        return Configuration.Builder().setWorkerFactory(factory).build()
-    }
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
+        // use our custom factory so that work manager will use it to create our worker
+        val workManagerConfig = Configuration.Builder()
+            .setWorkerFactory(sampleWorkerFactory)
+            .build()
+        WorkManager.initialize(this, workManagerConfig)
     }
 }
